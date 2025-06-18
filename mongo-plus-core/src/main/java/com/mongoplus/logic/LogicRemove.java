@@ -46,6 +46,11 @@ public class LogicRemove {
         }
         Execute execute = (Execute) target;
         Document updateBasic = new Document(result.getColumn(), result.getLogicDeleteValue());
+
+        if (result.getTimestampColumn() != null) {
+            updateBasic.put(result.getTimestampColumn(), System.currentTimeMillis());
+        }
+
         BasicDBObject update = new BasicDBObject(SpecialConditionEnum.SET.getCondition(), updateBasic);
         UpdateResult updateResult = execute.executeUpdate(
                 Collections.singletonList(new MutablePair<>((Bson) args[0], update)), (UpdateOptions) args[1], collection

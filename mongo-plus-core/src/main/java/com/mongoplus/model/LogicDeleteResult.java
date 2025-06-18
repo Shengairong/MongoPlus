@@ -36,6 +36,11 @@ public class LogicDeleteResult {
      */
     private LogicDataType logicDataType = LogicDataType.DEFAULT;
 
+    /**
+     * 逻辑删除时间列
+     */
+    private String timestampColumn;
+
     public LogicDataType getLogicDataType() {
         return logicDataType;
     }
@@ -108,5 +113,13 @@ public class LogicDeleteResult {
 
     public void setLogicNotDeleteValue(String logicNotDeleteValue) {
         this.logicNotDeleteValue = logicNotDeleteValue;
+    }
+
+    public String getTimestampColumn() {
+        return timestampColumn;
+    }
+
+    public void setTimestampColumn(String timestampColumn) {
+        this.timestampColumn = timestampColumn;
     }
 }

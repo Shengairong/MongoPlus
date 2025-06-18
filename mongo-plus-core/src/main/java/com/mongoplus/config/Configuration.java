@@ -413,7 +413,7 @@ public class Configuration {
                 continue;
             }
             TypeInformation typeInformation = TypeInformation.of(clazz);
-            FieldInformation ignoreLogicAnnotation = typeInformation.getAnnotationField(IgnoreLogic.class);
+            IgnoreLogic ignoreLogicAnnotation = clazz.getAnnotation(IgnoreLogic.class);
             // 如果存在忽略逻辑删除注解
             if (Objects.nonNull(ignoreLogicAnnotation)) {
                 continue;
@@ -428,6 +428,7 @@ public class Configuration {
                 result.setLogicDeleteValue(StringUtils.isNotBlank(annotation.delval()) ? annotation.delval() : logicProperty.getLogicDeleteValue());
                 result.setLogicNotDeleteValue(StringUtils.isNotBlank(annotation.value()) ? annotation.value() : logicProperty.getLogicNotDeleteValue());
                 result.setLogicDataType(annotation.delType() == LogicDataType.DEFAULT ? logicProperty.getLogicDataType() : annotation.delType());
+                result.setTimestampColumn(logicProperty.getLogicDeleteTimestampField());
                 logicDeleteResultHashMap.put(clazz, result);
                 continue;
             }
@@ -442,6 +443,7 @@ public class Configuration {
                 result.setLogicNotDeleteValue(logicProperty.getLogicNotDeleteValue());
                 result.setLogicDataType(logicProperty.getLogicDataType() == LogicDataType.DEFAULT ? LogicDataType.STRING : logicProperty.getLogicDataType());
                 logicDeleteResultHashMap.put(clazz, result);
+                result.setTimestampColumn(logicProperty.getLogicDeleteTimestampField());
                 continue;
             }
             logicDeleteResultHashMap.put(clazz, null);

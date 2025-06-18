@@ -37,6 +37,11 @@ public class LogicProperty {
      */
     private LogicDataType logicDataType = LogicDataType.DEFAULT;
 
+    /**
+     * 逻辑删除时间戳字段名
+     */
+    private String logicDeleteTimestampField;
+
     public LogicDataType getLogicDataType() {
         return logicDataType;
     }
@@ -83,5 +88,13 @@ public class LogicProperty {
 
     public void setLogicNotDeleteValue(String logicNotDeleteValue) {
         this.logicNotDeleteValue = logicNotDeleteValue;
+    }
+
+    public String getLogicDeleteTimestampField() {
+        return logicDeleteTimestampField;
+    }
+
+    public void setLogicDeleteTimestampField(String logicDeleteTimestampField) {
+        this.logicDeleteTimestampField = logicDeleteTimestampField;
     }
 }
